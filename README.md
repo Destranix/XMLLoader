@@ -18,4 +18,4 @@ loader.file.index("COLLADA");
 double[] values = root.getValuesByPath("::descendant-or-self/ymag", new double[0]);
 ```
 
-It's recommended to use the "getValuesByPath" or "createElementsByPath" method, cause it's not sure if the structure of the underlying classes persists.
+It's recommended to use the "getValuesByPath" or "createElementsByPath" method, since it's not sure if the structure of the underlying classes persist.
