@@ -1,0 +1,110 @@
+
+package ComplexTypes;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.HashSet;
+import Xml.XmlComplexType;
+import Xml.XmlQName;
+import Xml.XmlType;
+
+public final class Gles2ProgramType
+    extends XmlComplexType
+{
+
+    protected final static String ALLOWED_CHILDREN_PATTERN = "((shader[ ]+){0,}(linker[ ]+){0,}(bind_attribute[ ]+){0,}(bind_uniform[ ]+){0,}){1}";
+    protected final static HashSet<XmlQName> ALLOWED_CHILDREN_NAMES = new HashSet<XmlQName>();
+    protected final static HashMap<XmlQName, XmlQName> CHILDREN_NAME_MAP = new HashMap<XmlQName, XmlQName>();
+    protected final static HashMap<XmlQName, Integer> ALLOWED_CHILDREN_MIN_BOUNDS = new HashMap<XmlQName, Integer>();
+    protected final static HashMap<XmlQName, Integer> ALLOWED_CHILDREN_MAX_BOUNDS = new HashMap<XmlQName, Integer>();
+    protected final static HashMap<String, String> ATTRIBUTE_DEFAULT_VALUES = new HashMap<String, String>();
+    protected final static HashSet<String> ALLOWED_ATTRIBUTES = new HashSet<String>();
+    protected final static HashSet<String> REQUIRED_ATTRIBUTES = new HashSet<String>();
+    protected final static HashSet<String> FORBIDDEN_ATTRIBUTES = new HashSet<String>();
+    protected final static HashMap<String, XmlQName> ATTRIBUTES_NAME_MAP = new HashMap<String, XmlQName>();
+    protected final static HashMap<String, HashMap<String, XmlType>> KEY_MAPS = new HashMap<String, HashMap<String, XmlType>>();
+    protected final static HashMap<String, String> KEY_OWNER_PATH_MAP = new HashMap<String, String>();
+    protected final static HashMap<String, String> KEY_VALUE_PATH_MAP = new HashMap<String, String>();
+    protected Gles2ProgramTypeGroupBindUniform[] bindUniform;
+    protected Gles2ProgramTypeGroupBindAttribute[] bindAttribute;
+    protected Gles2ShaderType[] shader;
+    protected FxTargetType[] linker;
+
+    static {
+        try {
+            ALLOWED_CHILDREN_NAMES.add(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "bind_uniform"));
+            CHILDREN_NAME_MAP.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "bind_uniform"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "gles2_program_type/group/bind_uniform"));
+            ALLOWED_CHILDREN_MIN_BOUNDS.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "bind_uniform"), Integer.valueOf("0"));
+            ALLOWED_CHILDREN_NAMES.add(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "bind_attribute"));
+            CHILDREN_NAME_MAP.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "bind_attribute"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "gles2_program_type/group/bind_attribute"));
+            ALLOWED_CHILDREN_MIN_BOUNDS.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "bind_attribute"), Integer.valueOf("0"));
+            ALLOWED_CHILDREN_NAMES.add(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "shader"));
+            CHILDREN_NAME_MAP.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "shader"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "gles2_shader_type"));
+            ALLOWED_CHILDREN_MIN_BOUNDS.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "shader"), Integer.valueOf("0"));
+            ALLOWED_CHILDREN_NAMES.add(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "linker"));
+            CHILDREN_NAME_MAP.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "linker"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "fx_target_type"));
+            ALLOWED_CHILDREN_MIN_BOUNDS.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "linker"), Integer.valueOf("0"));
+        } catch (URISyntaxException e) {
+            throw new AssertionError("URI not parsable", e);
+        }
+    }
+
+    public Gles2ProgramType(XmlComplexType elem) {
+        super(elem, Gles2ProgramType.class);
+    }
+
+    public Gles2ProgramTypeGroupBindUniform[] getBindUniform()
+        throws IOException
+    {
+        if (bindUniform == null) {
+            try {
+                bindUniform = ((Gles2ProgramTypeGroupBindUniform[]) getChildren(new Gles2ProgramTypeGroupBindUniform[ 0 ] , new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "bind_uniform"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "gles2_program_type/group/bind_uniform"), Gles2ProgramType.class));
+            } catch (URISyntaxException e) {
+                throw new AssertionError("URI not parsable", e);
+            }
+        }
+        return bindUniform;
+    }
+
+    public Gles2ProgramTypeGroupBindAttribute[] getBindAttribute()
+        throws IOException
+    {
+        if (bindAttribute == null) {
+            try {
+                bindAttribute = ((Gles2ProgramTypeGroupBindAttribute[]) getChildren(new Gles2ProgramTypeGroupBindAttribute[ 0 ] , new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "bind_attribute"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "gles2_program_type/group/bind_attribute"), Gles2ProgramType.class));
+            } catch (URISyntaxException e) {
+                throw new AssertionError("URI not parsable", e);
+            }
+        }
+        return bindAttribute;
+    }
+
+    public Gles2ShaderType[] getShader()
+        throws IOException
+    {
+        if (shader == null) {
+            try {
+                shader = ((Gles2ShaderType[]) getChildren(new Gles2ShaderType[ 0 ] , new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "shader"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "gles2_shader_type"), Gles2ProgramType.class));
+            } catch (URISyntaxException e) {
+                throw new AssertionError("URI not parsable", e);
+            }
+        }
+        return shader;
+    }
+
+    public FxTargetType[] getLinker()
+        throws IOException
+    {
+        if (linker == null) {
+            try {
+                linker = ((FxTargetType[]) getChildren(new FxTargetType[ 0 ] , new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "linker"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "fx_target_type"), Gles2ProgramType.class));
+            } catch (URISyntaxException e) {
+                throw new AssertionError("URI not parsable", e);
+            }
+        }
+        return linker;
+    }
+
+}
