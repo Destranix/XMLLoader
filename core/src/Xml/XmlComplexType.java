@@ -3351,13 +3351,13 @@ public class XmlComplexType extends XmlType{
 	 *
 	 * {@code path} must follow the following Syntax:
 	 * <pre>
-	 * path = idPath | (normalPath ( '|' normalPath)*);
-	 * idPath = '#' id;
+	 * path = (normalPath ( '|' normalPath)*);
 	 * normalPath = (node '/')* node?;
 	 * id = {@link XmlSimpleTypes.XmlID#ID_PATTERN_STRING};
-	 * node = identifier | (identifier?predicate);
+	 * node = identifier | (identifier?predicate) | idPath;
 	 * identifier = '@'? ( '*' | qname) | '.'{0,2} | '::' axisName;
 	 * predicate = '[' ( [0-9]+ | ':'? [^ ']' ]+ \\s* '=' \\s* [^ ']' ]+ ) ']';
+	 * idPath = '#' id;
 	 * qname = name | namespace | '{' \\s* namespace \\s* ',' \\s* name \\s* '}' | namespaceIdentifier ':' ( '*' | name);
 	 * axisName = 'ancestor' | 'ancestor-or-self' | 'descendant' | 'descendant-or-self';
 	 * name = {@link XmlSimpleTypes.XmlNCName#NCNAME_PATTERN_STRING};
@@ -3418,13 +3418,13 @@ public class XmlComplexType extends XmlType{
 	 * 
 	 * {@code path} must follow the following Syntax:
 	 * <pre>
-	 * path = idPath | (normalPath ( '|' normalPath)*);
-	 * idPath = '#' id;
+	 * path = (normalPath ( '|' normalPath)*);
 	 * normalPath = (node '/')* node?;
 	 * id = {@link XmlSimpleTypes.XmlID#ID_PATTERN_STRING};
-	 * node = identifier | (identifier?predicate);
+	 * node = identifier | (identifier?predicate) | idPath;
 	 * identifier = '@'? ( '*' | qname) | '.'{0,2} | '::' axisName;
 	 * predicate = '[' ( [0-9]+ | ':'? [^ ']' ]+ \\s* '=' \\s* [^ ']' ]+ ) ']';
+	 * idPath = '#' id;
 	 * qname = name | namespace | '{' \\s* namespace \\s* ',' \\s* name \\s* '}' | namespaceIdentifier ':' ( '*' | name);
 	 * axisName = 'ancestor' | 'ancestor-or-self' | 'descendant' | 'descendant-or-self';
 	 * name = {@link XmlSimpleTypes.XmlNCName#NCNAME_PATTERN_STRING};
@@ -3497,17 +3497,10 @@ public class XmlComplexType extends XmlType{
 		final String axisNamePatternString = "(?:ancestor|ancestor-or-self|descendant|descendant-or-self)";
 		final String identifierPatternString = "(?:(?:@?(?:\\*|"+qNamePatternString+"))|[\\.]{0,2}|\\:\\:"+axisNamePatternString+")";
 		//final String axisPatternString = "(?:\\:\\:"+axisNamePatternString+")";
-		final String nodePatternString = "("+identifierPatternString+")|("+identifierPatternString+")?("+predicatePatternString+")";
-		//final String idPathPatternString = "(?:#"+idPatternString+")";
+		final String idPathPatternString = "(?:#"+idPatternString+")";
+		final String nodePatternString = "("+identifierPatternString+")|("+identifierPatternString+")?("+predicatePatternString+")|(?:"+idPathPatternString+")";
 		final Pattern pathPattern = Pattern.compile("(?<=\\A|(?<=/))("+nodePatternString+")(?:/+|\\z)");
-		final Pattern idPathPattern = Pattern.compile("(?:#("+idPatternString+"))");
 		
-		Matcher idPathMatcher = idPathPattern.matcher(path);
-		if(idPathMatcher.matches()){
-			List<XmlType> tmp = new ArrayList<XmlType>();
-			tmp.add(parent.file.getElementById(idPathMatcher.group(1)));
-			return tmp;
-		}
 		List<String> nodesList = new ArrayList<String>();
 		Matcher pathMatcher = pathPattern.matcher(path);
 		while(pathMatcher.find()){
@@ -3553,17 +3546,10 @@ public class XmlComplexType extends XmlType{
 		final String axisNamePatternString = "(?:ancestor|ancestor-or-self|descendant|descendant-or-self)";
 		final String identifierPatternString = "(?:(?:@?(?:\\*|"+qNamePatternString+"))|[\\.]{0,2}|\\:\\:"+axisNamePatternString+")";
 		//final String axisPatternString = "(?:\\:\\:"+axisNamePatternString+")";
-		final String nodePatternString = "("+identifierPatternString+")|("+identifierPatternString+")?("+predicatePatternString+")";
-		//final String idPathPatternString = "(?:#"+idPatternString+")";
+		final String idPathPatternString = "(?:#"+idPatternString+")";
+		final String nodePatternString = "("+identifierPatternString+")|("+identifierPatternString+")?("+predicatePatternString+")|(?:"+idPathPatternString+")";
 		final Pattern pathPattern = Pattern.compile("(?<=\\A|(?<=/))("+nodePatternString+")(?:/+|\\z)");
-		final Pattern idPathPattern = Pattern.compile("(?:#("+idPatternString+"))");
 		
-		Matcher idPathMatcher = idPathPattern.matcher(path);
-		if(idPathMatcher.matches()){
-			List<XmlType> tmp = new ArrayList<XmlType>();
-			tmp.add(parent.file.getElementById(idPathMatcher.group(1)));
-			return tmp;
-		}
 		List<String> nodesList = new ArrayList<String>();
 		Matcher pathMatcher = pathPattern.matcher(path);
 		while(pathMatcher.find()){
@@ -3610,6 +3596,7 @@ public class XmlComplexType extends XmlType{
 	
 	private static List<XmlType> getElementsByPathSingleElement(XmlComplexType parent, Class<? extends XmlComplexType> parentClass, String node, XmlType currentElement, Class<? extends XmlType> currentRootClass) {
 		final String namePatternString = XmlNCName.NCNAME_PATTERN_STRING;
+		final String idPatternString = XmlID.ID_PATTERN_STRING;
 		final String namespaceIdentifierPatternString = namePatternString;
 		final String uriPatternString = "(?:(?:[a-zA-Z][0-9a-zA-Z+\\\\-\\\\.]*:)?%2F{0,2}(?:%2F|[0-9a-zA-Z;?:@&=+$\\\\.\\\\-_!~*'()%])+)?(?:#(?:%2F|[0-9a-zA-Z;?:@&=+$\\\\.\\\\-_!~*'()%])+)?";
 		final String namespacePatternString = uriPatternString;
@@ -3623,6 +3610,14 @@ public class XmlComplexType extends XmlType{
 		final Pattern qNamePattern = Pattern.compile("(?:("+namePatternString+")|("+namespacePatternString+")|(\\{\\s*"+namespacePatternString+"\\s*,\\s*"+namePatternString+"\\s*\\})|("+namespaceIdentifierPatternString+":(?:\\*|"+namePatternString+")))");
 		final Pattern predicatePattern = Pattern.compile("(?:\\[(?:(\\d+)|([:]?[^\\]]+)\\s*=\\s*([^\\]]+))\\])");
 		final Pattern axisPattern = Pattern.compile("(?:\\:\\:("+axisNamePatternString+"))");
+		final Pattern idPathPattern = Pattern.compile("(?:#("+idPatternString+"))");
+		
+		Matcher idPathMatcher = idPathPattern.matcher(node);
+		if(idPathMatcher.matches()){
+			List<XmlType> tmp = new ArrayList<XmlType>();
+			tmp.add(parent.file.getElementById(idPathMatcher.group(1)));
+			return tmp;
+		}
 		
 		List<XmlType> retList = new ArrayList<XmlType>();
 		
