@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.HashSet;
 import SimpleTypes.Float3Type;
+import Util.ArrayBigList;
 import Xml.XmlComplexType;
 import Xml.XmlQName;
 import Xml.XmlSimpleTypePlaceholder;
@@ -34,7 +35,7 @@ public final class OriginType
         super(elem, OriginType.class);
     }
 
-    public double[] getValue()
+    public ArrayBigList<Double> getValue()
         throws IOException, ParseException
     {
         if (this.children == null) {

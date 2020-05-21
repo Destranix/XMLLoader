@@ -886,7 +886,6 @@ public final class CnType
         ALLOWED_ATTRIBUTES.add("base");
         ALLOWED_ATTRIBUTES.add("definitionURL");
         ALLOWED_ATTRIBUTES.add("type");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public CnType(XmlComplexType elem) {

@@ -32,8 +32,8 @@ public class GlEnumerationType
         boolean couldParse = false;
         if ((!couldParse)) {
             try {
-                tmp = GlShadeModelEnum.applyLexicalFacets(value, file);
-                GlShadeModelEnum.checkValueBasedFacets(GlShadeModelEnum.parseValue(tmp));
+                tmp = GlBlendEquationEnum.applyLexicalFacets(value, file);
+                GlBlendEquationEnum.checkValueBasedFacets(GlBlendEquationEnum.parseValue(tmp));
             } catch (XmlValidationException _x) {
             }
         }
@@ -48,41 +48,6 @@ public class GlEnumerationType
             try {
                 tmp = GlStencilOpEnum.applyLexicalFacets(value, file);
                 GlStencilOpEnum.checkValueBasedFacets(GlStencilOpEnum.parseValue(tmp));
-            } catch (XmlValidationException _x) {
-            }
-        }
-        if ((!couldParse)) {
-            try {
-                tmp = GlLogicOpEnum.applyLexicalFacets(value, file);
-                GlLogicOpEnum.checkValueBasedFacets(GlLogicOpEnum.parseValue(tmp));
-            } catch (XmlValidationException _x) {
-            }
-        }
-        if ((!couldParse)) {
-            try {
-                tmp = GlLightModelColorControlEnum.applyLexicalFacets(value, file);
-                GlLightModelColorControlEnum.checkValueBasedFacets(GlLightModelColorControlEnum.parseValue(tmp));
-            } catch (XmlValidationException _x) {
-            }
-        }
-        if ((!couldParse)) {
-            try {
-                tmp = GlMaterialEnum.applyLexicalFacets(value, file);
-                GlMaterialEnum.checkValueBasedFacets(GlMaterialEnum.parseValue(tmp));
-            } catch (XmlValidationException _x) {
-            }
-        }
-        if ((!couldParse)) {
-            try {
-                tmp = GlFrontFaceEnum.applyLexicalFacets(value, file);
-                GlFrontFaceEnum.checkValueBasedFacets(GlFrontFaceEnum.parseValue(tmp));
-            } catch (XmlValidationException _x) {
-            }
-        }
-        if ((!couldParse)) {
-            try {
-                tmp = GlBlendEquationEnum.applyLexicalFacets(value, file);
-                GlBlendEquationEnum.checkValueBasedFacets(GlBlendEquationEnum.parseValue(tmp));
             } catch (XmlValidationException _x) {
             }
         }
@@ -109,6 +74,13 @@ public class GlEnumerationType
         }
         if ((!couldParse)) {
             try {
+                tmp = GlLogicOpEnum.applyLexicalFacets(value, file);
+                GlLogicOpEnum.checkValueBasedFacets(GlLogicOpEnum.parseValue(tmp));
+            } catch (XmlValidationException _x) {
+            }
+        }
+        if ((!couldParse)) {
+            try {
                 tmp = GlBlendEnum.applyLexicalFacets(value, file);
                 GlBlendEnum.checkValueBasedFacets(GlBlendEnum.parseValue(tmp));
             } catch (XmlValidationException _x) {
@@ -116,8 +88,29 @@ public class GlEnumerationType
         }
         if ((!couldParse)) {
             try {
+                tmp = GlLightModelColorControlEnum.applyLexicalFacets(value, file);
+                GlLightModelColorControlEnum.checkValueBasedFacets(GlLightModelColorControlEnum.parseValue(tmp));
+            } catch (XmlValidationException _x) {
+            }
+        }
+        if ((!couldParse)) {
+            try {
+                tmp = GlMaterialEnum.applyLexicalFacets(value, file);
+                GlMaterialEnum.checkValueBasedFacets(GlMaterialEnum.parseValue(tmp));
+            } catch (XmlValidationException _x) {
+            }
+        }
+        if ((!couldParse)) {
+            try {
                 tmp = GlFogEnum.applyLexicalFacets(value, file);
                 GlFogEnum.checkValueBasedFacets(GlFogEnum.parseValue(tmp));
+            } catch (XmlValidationException _x) {
+            }
+        }
+        if ((!couldParse)) {
+            try {
+                tmp = GlFrontFaceEnum.applyLexicalFacets(value, file);
+                GlFrontFaceEnum.checkValueBasedFacets(GlFrontFaceEnum.parseValue(tmp));
             } catch (XmlValidationException _x) {
             }
         }

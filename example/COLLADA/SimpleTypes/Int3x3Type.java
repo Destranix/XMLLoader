@@ -1,7 +1,9 @@
 
 package SimpleTypes;
 
+import java.math.BigInteger;
 import java.text.ParseException;
+import Util.ArrayBigList;
 import Xml.XmlFile;
 import Xml.XmlSimpleType;
 import Xml.XmlValidationException;
@@ -10,7 +12,7 @@ public class Int3x3Type
     extends XmlSimpleType
 {
 
-    protected final long[] value;
+    protected final ArrayBigList<Long> value;
 
     public Int3x3Type(XmlSimpleType attr, String value)
         throws ParseException
@@ -20,23 +22,23 @@ public class Int3x3Type
     }
 
     @Override
-    public long[] getValue() {
+    public ArrayBigList<Long> getValue() {
         return value;
     }
 
-    public static long[] parseAndCheckValue(String value, XmlFile file)
+    public static ArrayBigList<Long> parseAndCheckValue(String value, XmlFile file)
         throws ParseException
     {
         String tmp = Int3x3Type.applyLexicalFacets(value, file);
-        long[] ret = Int3x3Type.parseValue(tmp, file);
+        ArrayBigList<Long> ret = Int3x3Type.parseValue(tmp, file);
         Int3x3Type.checkValueBasedFacets(ret);
         return ret;
     }
 
-    public static long[] parseValue(String value, XmlFile file)
+    public static ArrayBigList<Long> parseValue(String value, XmlFile file)
         throws ParseException
     {
-        long[] ret = ((long[]) ListOfIntsType.parseValue(value, file));
+        ArrayBigList<Long> ret = ((ArrayBigList<Long> ) ListOfIntsType.parseValue(value, file));
         return ret;
     }
 
@@ -47,13 +49,13 @@ public class Int3x3Type
         return tmp;
     }
 
-    public static void checkValueBasedFacets(long[] value) {
+    public static void checkValueBasedFacets(ArrayBigList<Long> value) {
         ListOfIntsType.checkValueBasedFacets(value);
-        if ((value.length < 9)) {
-            throw new XmlValidationException(("Value not long enough. Length must be >= 9, but was "+(value.length)));
+        if (value.size().compareTo(new BigInteger("9"))< 0) {
+            throw new XmlValidationException(("Value not long enough. Length must be >= 9, but was "+(value.size())));
         }
-        if ((value.length > 9)) {
-            throw new XmlValidationException(("Value too long. Length must be <= 9, but was "+(value.length)));
+        if (value.size().compareTo(new BigInteger("9"))> 0) {
+            throw new XmlValidationException(("Value too long. Length must be <= 9, but was "+(value.size())));
         }
     }
 

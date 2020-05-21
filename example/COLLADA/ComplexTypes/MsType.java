@@ -67,7 +67,6 @@ public final class MsType
         ALLOWED_ATTRIBUTES.add("mathcolor");
         ALLOWED_ATTRIBUTES.add("rquote");
         ATTRIBUTE_DEFAULT_VALUES.put("rquote", "\"");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MsType(XmlComplexType elem) {

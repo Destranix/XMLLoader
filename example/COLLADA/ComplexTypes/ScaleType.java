@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.HashSet;
 import SimpleTypes.Float3Type;
+import Util.ArrayBigList;
 import Xml.XmlComplexType;
 import Xml.XmlFile;
 import Xml.XmlQName;
@@ -47,7 +48,7 @@ public final class ScaleType
         super(elem, ScaleType.class);
     }
 
-    public double[] getValue()
+    public ArrayBigList<Double> getValue()
         throws IOException, ParseException
     {
         if (this.children == null) {
@@ -68,7 +69,7 @@ public final class ScaleType
         extends XmlSimpleType
     {
 
-        protected final double[] value;
+        protected final ArrayBigList<Double> value;
 
         public SimpleTypeClass(XmlSimpleType attr, String value)
             throws ParseException
@@ -78,21 +79,23 @@ public final class ScaleType
         }
 
         @Override
-        public double[] getValue() {
+        public ArrayBigList<Double> getValue() {
             return value;
         }
 
-        public static double[] parseAndCheckValue(String value, XmlFile file)
+        public static ArrayBigList<Double> parseAndCheckValue(String value, XmlFile file)
             throws ParseException
         {
             String tmp = ScaleType.SimpleTypeClass.applyLexicalFacets(value, file);
-            double[] ret = ScaleType.SimpleTypeClass.parseValue(tmp);
+            ArrayBigList<Double> ret = ScaleType.SimpleTypeClass.parseValue(tmp, file);
             ScaleType.SimpleTypeClass.checkValueBasedFacets(ret);
             return ret;
         }
 
-        public static double[] parseValue(String value) {
-            double[] ret = ((double[]) Float3Type.parseValue(value));
+        public static ArrayBigList<Double> parseValue(String value, XmlFile file)
+            throws ParseException
+        {
+            ArrayBigList<Double> ret = ((ArrayBigList<Double> ) Float3Type.parseValue(value, file));
             return ret;
         }
 
@@ -103,7 +106,7 @@ public final class ScaleType
             return tmp;
         }
 
-        public static void checkValueBasedFacets(double[] value) {
+        public static void checkValueBasedFacets(ArrayBigList<Double> value) {
             Float3Type.checkValueBasedFacets(value);
         }
 

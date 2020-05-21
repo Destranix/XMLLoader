@@ -56,7 +56,6 @@ public final class MlabeledtrType
         ALLOWED_ATTRIBUTES.add("href");
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("groupalign");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MlabeledtrType(XmlComplexType elem) {

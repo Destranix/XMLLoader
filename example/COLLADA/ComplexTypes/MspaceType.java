@@ -54,7 +54,6 @@ public final class MspaceType
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("height");
         ATTRIBUTE_DEFAULT_VALUES.put("height", "0ex");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MspaceType(XmlComplexType elem) {

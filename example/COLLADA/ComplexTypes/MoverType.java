@@ -875,7 +875,6 @@ public final class MoverType
         ALLOWED_ATTRIBUTES.add("href");
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("accent");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MoverType(XmlComplexType elem) {

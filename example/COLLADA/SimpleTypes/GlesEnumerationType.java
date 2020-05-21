@@ -32,13 +32,6 @@ public class GlesEnumerationType
         boolean couldParse = false;
         if ((!couldParse)) {
             try {
-                tmp = GlShadeModelEnum.applyLexicalFacets(value, file);
-                GlShadeModelEnum.checkValueBasedFacets(GlShadeModelEnum.parseValue(tmp));
-            } catch (XmlValidationException _x) {
-            }
-        }
-        if ((!couldParse)) {
-            try {
                 tmp = GlFuncEnum.applyLexicalFacets(value, file);
                 GlFuncEnum.checkValueBasedFacets(GlFuncEnum.parseValue(tmp));
             } catch (XmlValidationException _x) {

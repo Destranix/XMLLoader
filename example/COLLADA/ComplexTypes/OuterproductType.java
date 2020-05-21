@@ -46,7 +46,6 @@ public final class OuterproductType
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("encoding");
         ALLOWED_ATTRIBUTES.add("definitionURL");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public OuterproductType(XmlComplexType elem) {

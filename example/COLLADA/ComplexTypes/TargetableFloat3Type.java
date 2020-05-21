@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.HashSet;
 import SimpleTypes.Float3Type;
+import Util.ArrayBigList;
 import Xml.XmlComplexType;
 import Xml.XmlQName;
 import Xml.XmlSimpleTypePlaceholder;
@@ -45,7 +46,7 @@ public final class TargetableFloat3Type
         super(elem, TargetableFloat3Type.class);
     }
 
-    public double[] getValue()
+    public ArrayBigList<Double> getValue()
         throws IOException, ParseException
     {
         if (this.children == null) {

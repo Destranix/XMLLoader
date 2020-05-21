@@ -881,7 +881,6 @@ public final class MpaddedType
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("lspace");
         ALLOWED_ATTRIBUTES.add("height");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MpaddedType(XmlComplexType elem) {

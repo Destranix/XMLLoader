@@ -34,10 +34,11 @@ public final class PcurvesType
     protected ListOfUintsType vcount;
 
     static {
-        ALLOWED_ATTRIBUTES.add("name");
+        ALLOWED_ATTRIBUTES.add("count");
+        REQUIRED_ATTRIBUTES.add("count");
         try {
-            ATTRIBUTES_NAME_MAP.put("name", new XmlQName(new URI("http://www.w3.org/2001/XMLSchema"), "token"));
             ATTRIBUTES_NAME_MAP.put("count", new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "uint_type"));
+            ATTRIBUTES_NAME_MAP.put("name", new XmlQName(new URI("http://www.w3.org/2001/XMLSchema"), "token"));
             ATTRIBUTES_NAME_MAP.put("id", new XmlQName(new URI("http://www.w3.org/2001/XMLSchema"), "ID"));
             ALLOWED_CHILDREN_NAMES.add(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "extra"));
             CHILDREN_NAME_MAP.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "extra"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "extra_type"));
@@ -56,8 +57,7 @@ public final class PcurvesType
         } catch (URISyntaxException e) {
             throw new AssertionError("URI not parsable", e);
         }
-        ALLOWED_ATTRIBUTES.add("count");
-        REQUIRED_ATTRIBUTES.add("count");
+        ALLOWED_ATTRIBUTES.add("name");
         ALLOWED_ATTRIBUTES.add("id");
         REQUIRED_ATTRIBUTES.add("id");
     }

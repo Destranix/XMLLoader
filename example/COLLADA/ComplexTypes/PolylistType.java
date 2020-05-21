@@ -37,8 +37,8 @@ public final class PolylistType
         ALLOWED_ATTRIBUTES.add("material");
         try {
             ATTRIBUTES_NAME_MAP.put("material", new XmlQName(new URI("http://www.w3.org/2001/XMLSchema"), "NCName"));
-            ATTRIBUTES_NAME_MAP.put("count", new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "uint_type"));
             ATTRIBUTES_NAME_MAP.put("name", new XmlQName(new URI("http://www.w3.org/2001/XMLSchema"), "token"));
+            ATTRIBUTES_NAME_MAP.put("count", new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "uint_type"));
             ALLOWED_CHILDREN_NAMES.add(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "extra"));
             CHILDREN_NAME_MAP.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "extra"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "extra_type"));
             ALLOWED_CHILDREN_MIN_BOUNDS.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "extra"), Integer.valueOf("0"));
@@ -56,9 +56,9 @@ public final class PolylistType
         } catch (URISyntaxException e) {
             throw new AssertionError("URI not parsable", e);
         }
+        ALLOWED_ATTRIBUTES.add("name");
         ALLOWED_ATTRIBUTES.add("count");
         REQUIRED_ATTRIBUTES.add("count");
-        ALLOWED_ATTRIBUTES.add("name");
     }
 
     public PolylistType(XmlComplexType elem) {

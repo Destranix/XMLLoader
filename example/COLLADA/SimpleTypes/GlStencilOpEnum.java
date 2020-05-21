@@ -13,7 +13,7 @@ public class GlStencilOpEnum
 {
 
     protected final String value;
-    private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("ZERO|INVERT|INCR_WRAP|INCR|KEEP|DECR_WRAP|REPLACE|DECR"));
+    private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("ZERO|INVERT|INCR_WRAP|KEEP|INCR|DECR_WRAP|REPLACE|DECR"));
 
     public GlStencilOpEnum(XmlSimpleType attr, String value)
         throws ParseException

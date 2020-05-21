@@ -882,7 +882,6 @@ public final class MfencedType
         ATTRIBUTE_DEFAULT_VALUES.put("open", "(");
         ALLOWED_ATTRIBUTES.add("separators");
         ATTRIBUTE_DEFAULT_VALUES.put("separators", ",");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MfencedType(XmlComplexType elem) {

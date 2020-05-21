@@ -36,8 +36,8 @@ public final class PolygonsType
         ALLOWED_ATTRIBUTES.add("material");
         try {
             ATTRIBUTES_NAME_MAP.put("material", new XmlQName(new URI("http://www.w3.org/2001/XMLSchema"), "NCName"));
-            ATTRIBUTES_NAME_MAP.put("count", new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "uint_type"));
             ATTRIBUTES_NAME_MAP.put("name", new XmlQName(new URI("http://www.w3.org/2001/XMLSchema"), "token"));
+            ATTRIBUTES_NAME_MAP.put("count", new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "uint_type"));
             ALLOWED_CHILDREN_NAMES.add(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "ph"));
             CHILDREN_NAME_MAP.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "ph"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "polygons_type/group/group1/ph"));
             ALLOWED_CHILDREN_MIN_BOUNDS.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "ph"), Integer.valueOf("0"));
@@ -53,9 +53,9 @@ public final class PolygonsType
         } catch (URISyntaxException e) {
             throw new AssertionError("URI not parsable", e);
         }
+        ALLOWED_ATTRIBUTES.add("name");
         ALLOWED_ATTRIBUTES.add("count");
         REQUIRED_ATTRIBUTES.add("count");
-        ALLOWED_ATTRIBUTES.add("name");
     }
 
     public PolygonsType(XmlComplexType elem) {

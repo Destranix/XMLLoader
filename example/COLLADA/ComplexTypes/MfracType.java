@@ -884,7 +884,6 @@ public final class MfracType
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("linethickness");
         ATTRIBUTE_DEFAULT_VALUES.put("linethickness", "1");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MfracType(XmlComplexType elem) {

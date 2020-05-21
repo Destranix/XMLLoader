@@ -875,7 +875,6 @@ public final class SetType
         ALLOWED_ATTRIBUTES.add("href");
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("type");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public SetType(XmlComplexType elem) {

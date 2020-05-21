@@ -2,7 +2,9 @@
 package SimpleTypes;
 
 import java.text.ParseException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import Util.ArrayBigList;
 import Xml.XmlFile;
 import Xml.XmlSimpleType;
 import Xml.XmlValidationException;
@@ -12,7 +14,7 @@ public class ListOfSidrefsType
 {
 
     private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("(.*(?:(?:[ ]+).*)*)"));
-    protected final String[] value;
+    protected final ArrayBigList<String> value;
 
     public ListOfSidrefsType(XmlSimpleType attr, String value)
         throws ParseException
@@ -22,26 +24,27 @@ public class ListOfSidrefsType
     }
 
     @Override
-    public String[] getValue() {
+    public ArrayBigList<String> getValue() {
         return value;
     }
 
-    public static String[] parseAndCheckValue(String value, XmlFile file)
+    public static ArrayBigList<String> parseAndCheckValue(String value, XmlFile file)
         throws ParseException
     {
         String tmp = ListOfSidrefsType.applyLexicalFacets(value, file);
-        String[] ret = ListOfSidrefsType.parseValue(tmp, file);
+        ArrayBigList<String> ret = ListOfSidrefsType.parseValue(tmp, file);
         ListOfSidrefsType.checkValueBasedFacets(ret);
         return ret;
     }
 
-    public static String[] parseValue(String value, XmlFile file)
+    public static ArrayBigList<String> parseValue(String value, XmlFile file)
         throws ParseException
     {
-        String[] tmpSplit = (value.split("[ ]+"));
-        String[] ret = new String[tmpSplit.length] ;
-        for (int i = 0; (i < ret.length); i ++) {
-            ret[i] = SidrefType.parseAndCheckValue(tmpSplit[i], file);
+        final Pattern splitPattern = (Pattern.compile("([^ ]*)[ ]+"));
+        ArrayBigList<String> ret = new ArrayBigList<String>();
+        Matcher matcher = splitPattern.matcher(value);
+        while (matcher.find()) {
+            ret.add(SidrefType.parseAndCheckValue(matcher.group(1), file));
         }
         return ret;
     }
@@ -56,7 +59,7 @@ public class ListOfSidrefsType
         return tmp;
     }
 
-    public static void checkValueBasedFacets(String[] value) {
+    public static void checkValueBasedFacets(ArrayBigList<String> value) {
     }
 
 }

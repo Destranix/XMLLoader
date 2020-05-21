@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.HashSet;
 import SimpleTypes.ListOfNamesType;
+import Util.ArrayBigList;
 import Xml.XmlComplexType;
 import Xml.XmlQName;
 import Xml.XmlSimpleTypePlaceholder;
@@ -50,7 +51,7 @@ public final class NameArrayType
         super(elem, NameArrayType.class);
     }
 
-    public String[] getValue()
+    public ArrayBigList<String> getValue()
         throws IOException, ParseException
     {
         if (this.children == null) {

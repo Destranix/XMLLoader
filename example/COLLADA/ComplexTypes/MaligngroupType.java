@@ -44,7 +44,6 @@ public final class MaligngroupType
         ALLOWED_ATTRIBUTES.add("href");
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("groupalign");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MaligngroupType(XmlComplexType elem) {

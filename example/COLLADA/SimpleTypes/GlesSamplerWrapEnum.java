@@ -13,7 +13,7 @@ public class GlesSamplerWrapEnum
 {
 
     protected final String value;
-    private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("REPEAT|CLAMP|MIRRORED_REPEAT|CLAMP_TO_EDGE"));
+    private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("REPEAT|CLAMP|CLAMP_TO_EDGE|MIRRORED_REPEAT"));
 
     public GlesSamplerWrapEnum(XmlSimpleType attr, String value)
         throws ParseException

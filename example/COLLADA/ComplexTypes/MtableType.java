@@ -106,7 +106,6 @@ public final class MtableType
         ATTRIBUTE_DEFAULT_VALUES.put("frame", "none");
         ALLOWED_ATTRIBUTES.add("columnspacing");
         ATTRIBUTE_DEFAULT_VALUES.put("columnspacing", "0.8em");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MtableType(XmlComplexType elem) {

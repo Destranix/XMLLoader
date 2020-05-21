@@ -85,7 +85,6 @@ public final class MoType
         ALLOWED_ATTRIBUTES.add("fence");
         ALLOWED_ATTRIBUTES.add("mathcolor");
         ALLOWED_ATTRIBUTES.add("movablelimits");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MoType(XmlComplexType elem) {

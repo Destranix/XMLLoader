@@ -2,7 +2,9 @@
 package SimpleTypes;
 
 import java.text.ParseException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import Util.ArrayBigList;
 import Xml.XmlFile;
 import Xml.XmlSimpleType;
 import Xml.XmlValidationException;
@@ -13,7 +15,7 @@ public class ListOfBoolsType
 {
 
     private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("(.*(?:(?:[ ]+).*)*)"));
-    protected final boolean[] value;
+    protected final ArrayBigList<Boolean> value;
 
     public ListOfBoolsType(XmlSimpleType attr, String value)
         throws ParseException
@@ -23,26 +25,27 @@ public class ListOfBoolsType
     }
 
     @Override
-    public boolean[] getValue() {
+    public ArrayBigList<Boolean> getValue() {
         return value;
     }
 
-    public static boolean[] parseAndCheckValue(String value, XmlFile file)
+    public static ArrayBigList<Boolean> parseAndCheckValue(String value, XmlFile file)
         throws ParseException
     {
         String tmp = ListOfBoolsType.applyLexicalFacets(value, file);
-        boolean[] ret = ListOfBoolsType.parseValue(tmp, file);
+        ArrayBigList<Boolean> ret = ListOfBoolsType.parseValue(tmp, file);
         ListOfBoolsType.checkValueBasedFacets(ret);
         return ret;
     }
 
-    public static boolean[] parseValue(String value, XmlFile file)
+    public static ArrayBigList<Boolean> parseValue(String value, XmlFile file)
         throws ParseException
     {
-        String[] tmpSplit = (value.split("[ ]+"));
-        boolean[] ret = new boolean[tmpSplit.length] ;
-        for (int i = 0; (i < ret.length); i ++) {
-            ret[i] = XmlBoolean.parseAndCheckValuePrimitive(tmpSplit[i], file);
+        final Pattern splitPattern = (Pattern.compile("([^ ]*)[ ]+"));
+        ArrayBigList<Boolean> ret = new ArrayBigList<Boolean>();
+        Matcher matcher = splitPattern.matcher(value);
+        while (matcher.find()) {
+            ret.add(XmlBoolean.parseAndCheckValue(matcher.group(1), file));
         }
         return ret;
     }
@@ -57,7 +60,7 @@ public class ListOfBoolsType
         return tmp;
     }
 
-    public static void checkValueBasedFacets(boolean[] value) {
+    public static void checkValueBasedFacets(ArrayBigList<Boolean> value) {
     }
 
 }

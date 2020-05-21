@@ -895,7 +895,6 @@ public final class MathType
         ALLOWED_ATTRIBUTES.add("width");
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("height");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MathType(XmlComplexType elem) {

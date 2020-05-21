@@ -876,7 +876,6 @@ public final class MencloseType
         ALLOWED_ATTRIBUTES.add("id");
         ALLOWED_ATTRIBUTES.add("href");
         ALLOWED_ATTRIBUTES.add("style");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MencloseType(XmlComplexType elem) {

@@ -2,7 +2,9 @@
 package SimpleTypes;
 
 import java.text.ParseException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import Util.ArrayBigList;
 import Xml.XmlFile;
 import Xml.XmlSimpleType;
 import Xml.XmlValidationException;
@@ -12,7 +14,7 @@ public class ListOfIntsType
 {
 
     private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("(.*(?:(?:[ ]+).*)*)"));
-    protected final long[] value;
+    protected final ArrayBigList<Long> value;
 
     public ListOfIntsType(XmlSimpleType attr, String value)
         throws ParseException
@@ -22,26 +24,27 @@ public class ListOfIntsType
     }
 
     @Override
-    public long[] getValue() {
+    public ArrayBigList<Long> getValue() {
         return value;
     }
 
-    public static long[] parseAndCheckValue(String value, XmlFile file)
+    public static ArrayBigList<Long> parseAndCheckValue(String value, XmlFile file)
         throws ParseException
     {
         String tmp = ListOfIntsType.applyLexicalFacets(value, file);
-        long[] ret = ListOfIntsType.parseValue(tmp, file);
+        ArrayBigList<Long> ret = ListOfIntsType.parseValue(tmp, file);
         ListOfIntsType.checkValueBasedFacets(ret);
         return ret;
     }
 
-    public static long[] parseValue(String value, XmlFile file)
+    public static ArrayBigList<Long> parseValue(String value, XmlFile file)
         throws ParseException
     {
-        String[] tmpSplit = (value.split("[ ]+"));
-        long[] ret = new long[tmpSplit.length] ;
-        for (int i = 0; (i < ret.length); i ++) {
-            ret[i] = IntType.parseAndCheckValuePrimitive(tmpSplit[i], file);
+        final Pattern splitPattern = (Pattern.compile("([^ ]*)[ ]+"));
+        ArrayBigList<Long> ret = new ArrayBigList<Long>();
+        Matcher matcher = splitPattern.matcher(value);
+        while (matcher.find()) {
+            ret.add(IntType.parseAndCheckValue(matcher.group(1), file));
         }
         return ret;
     }
@@ -56,7 +59,7 @@ public class ListOfIntsType
         return tmp;
     }
 
-    public static void checkValueBasedFacets(long[] value) {
+    public static void checkValueBasedFacets(ArrayBigList<Long> value) {
     }
 
 }

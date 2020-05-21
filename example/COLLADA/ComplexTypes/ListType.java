@@ -875,7 +875,6 @@ public final class ListType
         ALLOWED_ATTRIBUTES.add("href");
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("order");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public ListType(XmlComplexType elem) {

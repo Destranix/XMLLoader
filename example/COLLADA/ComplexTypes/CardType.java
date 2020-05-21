@@ -46,7 +46,6 @@ public final class CardType
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("encoding");
         ALLOWED_ATTRIBUTES.add("definitionURL");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public CardType(XmlComplexType elem) {

@@ -13,7 +13,7 @@ public class GlFogEnum
 {
 
     protected final String value;
-    private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("EXP2|LINEAR|EXP"));
+    private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("EXP2|EXP|LINEAR"));
 
     public GlFogEnum(XmlSimpleType attr, String value)
         throws ParseException

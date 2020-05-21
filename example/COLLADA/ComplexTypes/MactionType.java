@@ -879,7 +879,6 @@ public final class MactionType
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("actiontype");
         REQUIRED_ATTRIBUTES.add("actiontype");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MactionType(XmlComplexType elem) {

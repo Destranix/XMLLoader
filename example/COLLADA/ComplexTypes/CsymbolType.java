@@ -877,7 +877,6 @@ public final class CsymbolType
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("encoding");
         ALLOWED_ATTRIBUTES.add("definitionURL");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public CsymbolType(XmlComplexType elem) {

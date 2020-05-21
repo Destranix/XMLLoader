@@ -13,7 +13,7 @@ public class GlesTexcombinerOperatorAlphaEnum
 {
 
     protected final String value;
-    private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("ADD_SIGNED|ADD|MODULATE|REPLACE|SUBTRACT|INTERPOLATE"));
+    private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("ADD|ADD_SIGNED|MODULATE|REPLACE|INTERPOLATE|SUBTRACT"));
 
     public GlesTexcombinerOperatorAlphaEnum(XmlSimpleType attr, String value)
         throws ParseException

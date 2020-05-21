@@ -44,7 +44,6 @@ public final class AnnotationXmlType
         ALLOWED_ATTRIBUTES.add("href");
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("encoding");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public AnnotationXmlType(XmlComplexType elem) {

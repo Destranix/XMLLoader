@@ -944,7 +944,6 @@ public final class MstyleType
         ALLOWED_ATTRIBUTES.add("movablelimits");
         ALLOWED_ATTRIBUTES.add("verythinmathspace");
         ATTRIBUTE_DEFAULT_VALUES.put("verythinmathspace", "0.111111em");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MstyleType(XmlComplexType elem) {

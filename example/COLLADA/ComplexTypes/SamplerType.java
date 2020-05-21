@@ -30,10 +30,10 @@ public final class SamplerType
     protected InputLocalType[] input;
 
     static {
-        ALLOWED_ATTRIBUTES.add("pre_behavior");
+        ALLOWED_ATTRIBUTES.add("post_behavior");
         try {
-            ATTRIBUTES_NAME_MAP.put("pre_behavior", new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "sampler_behavior_enum"));
             ATTRIBUTES_NAME_MAP.put("post_behavior", new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "sampler_behavior_enum"));
+            ATTRIBUTES_NAME_MAP.put("pre_behavior", new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "sampler_behavior_enum"));
             ATTRIBUTES_NAME_MAP.put("id", new XmlQName(new URI("http://www.w3.org/2001/XMLSchema"), "ID"));
             ALLOWED_CHILDREN_NAMES.add(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "input"));
             CHILDREN_NAME_MAP.put(new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "input"), new XmlQName(new URI("http://www.collada.org/2008/03/COLLADASchema"), "input_local_type"));
@@ -41,7 +41,7 @@ public final class SamplerType
         } catch (URISyntaxException e) {
             throw new AssertionError("URI not parsable", e);
         }
-        ALLOWED_ATTRIBUTES.add("post_behavior");
+        ALLOWED_ATTRIBUTES.add("pre_behavior");
         ALLOWED_ATTRIBUTES.add("id");
     }
 

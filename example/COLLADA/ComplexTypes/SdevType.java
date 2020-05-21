@@ -46,7 +46,6 @@ public final class SdevType
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("encoding");
         ALLOWED_ATTRIBUTES.add("definitionURL");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public SdevType(XmlComplexType elem) {

@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.HashSet;
 import SimpleTypes.ListOfIntsType;
+import Util.ArrayBigList;
 import Xml.XmlComplexType;
 import Xml.XmlQName;
 import Xml.XmlSimpleTypePlaceholder;
@@ -56,7 +57,7 @@ public final class IntArrayType
         super(elem, IntArrayType.class);
     }
 
-    public long[] getValue()
+    public ArrayBigList<Long> getValue()
         throws IOException, ParseException
     {
         if (this.children == null) {

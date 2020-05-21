@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.HashSet;
 import SimpleTypes.ListOfUintsType;
+import Util.ArrayBigList;
 import Xml.XmlComplexType;
 import Xml.XmlQName;
 import Xml.XmlSimpleTypePlaceholder;
@@ -35,7 +36,7 @@ public final class PType
         super(elem, PType.class);
     }
 
-    public BigInteger[] getValue()
+    public ArrayBigList<BigInteger> getValue()
         throws IOException, ParseException
     {
         if (this.children == null) {

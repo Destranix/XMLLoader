@@ -873,7 +873,6 @@ public final class MsqrtType
         ALLOWED_ATTRIBUTES.add("id");
         ALLOWED_ATTRIBUTES.add("href");
         ALLOWED_ATTRIBUTES.add("style");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MsqrtType(XmlComplexType elem) {

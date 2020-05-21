@@ -61,7 +61,6 @@ public final class MtextType
         ALLOWED_ATTRIBUTES.add("href");
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("mathcolor");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public MtextType(XmlComplexType elem) {

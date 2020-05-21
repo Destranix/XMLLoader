@@ -876,7 +876,6 @@ public final class IntervalType
         ALLOWED_ATTRIBUTES.add("style");
         ALLOWED_ATTRIBUTES.add("closure");
         ATTRIBUTE_DEFAULT_VALUES.put("closure", "closed");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public IntervalType(XmlComplexType elem) {

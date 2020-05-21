@@ -2,7 +2,9 @@
 package SimpleTypes;
 
 import java.text.ParseException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import Util.ArrayBigList;
 import Xml.XmlFile;
 import Xml.XmlSimpleType;
 import Xml.XmlValidationException;
@@ -12,7 +14,7 @@ public class ListOfFloatsType
 {
 
     private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("(.*(?:(?:[ ]+).*)*)"));
-    protected final double[] value;
+    protected final ArrayBigList<Double> value;
 
     public ListOfFloatsType(XmlSimpleType attr, String value)
         throws ParseException
@@ -22,26 +24,27 @@ public class ListOfFloatsType
     }
 
     @Override
-    public double[] getValue() {
+    public ArrayBigList<Double> getValue() {
         return value;
     }
 
-    public static double[] parseAndCheckValue(String value, XmlFile file)
+    public static ArrayBigList<Double> parseAndCheckValue(String value, XmlFile file)
         throws ParseException
     {
         String tmp = ListOfFloatsType.applyLexicalFacets(value, file);
-        double[] ret = ListOfFloatsType.parseValue(tmp, file);
+        ArrayBigList<Double> ret = ListOfFloatsType.parseValue(tmp, file);
         ListOfFloatsType.checkValueBasedFacets(ret);
         return ret;
     }
 
-    public static double[] parseValue(String value, XmlFile file)
+    public static ArrayBigList<Double> parseValue(String value, XmlFile file)
         throws ParseException
     {
-        String[] tmpSplit = (value.split("[ ]+"));
-        double[] ret = new double[tmpSplit.length] ;
-        for (int i = 0; (i < ret.length); i ++) {
-            ret[i] = FloatType.parseAndCheckValuePrimitive(tmpSplit[i], file);
+        final Pattern splitPattern = (Pattern.compile("([^ ]*)[ ]+"));
+        ArrayBigList<Double> ret = new ArrayBigList<Double>();
+        Matcher matcher = splitPattern.matcher(value);
+        while (matcher.find()) {
+            ret.add(FloatType.parseAndCheckValue(matcher.group(1), file));
         }
         return ret;
     }
@@ -56,7 +59,7 @@ public class ListOfFloatsType
         return tmp;
     }
 
-    public static void checkValueBasedFacets(double[] value) {
+    public static void checkValueBasedFacets(ArrayBigList<Double> value) {
     }
 
 }

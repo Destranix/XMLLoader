@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.HashSet;
 import SimpleTypes.ListOfHexBinaryType;
+import Util.ArrayBigList;
 import Xml.XmlComplexType;
 import Xml.XmlQName;
 import Xml.XmlSimpleTypePlaceholder;
@@ -47,7 +48,7 @@ public final class ImageSourceTypeGroupHex
         super(elem, ImageSourceTypeGroupHex.class);
     }
 
-    public BigInteger[] getValue()
+    public ArrayBigList<BigInteger> getValue()
         throws IOException, ParseException
     {
         if (this.children == null) {

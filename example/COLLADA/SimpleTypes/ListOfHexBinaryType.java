@@ -3,7 +3,9 @@ package SimpleTypes;
 
 import java.math.BigInteger;
 import java.text.ParseException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import Util.ArrayBigList;
 import Xml.XmlFile;
 import Xml.XmlSimpleType;
 import Xml.XmlValidationException;
@@ -14,7 +16,7 @@ public class ListOfHexBinaryType
 {
 
     private final static Pattern RESTRICTION_PATTERN = (Pattern.compile("(.*(?:(?:[ ]+).*)*)"));
-    protected final BigInteger[] value;
+    protected final ArrayBigList<BigInteger> value;
 
     public ListOfHexBinaryType(XmlSimpleType attr, String value)
         throws ParseException
@@ -24,26 +26,27 @@ public class ListOfHexBinaryType
     }
 
     @Override
-    public BigInteger[] getValue() {
+    public ArrayBigList<BigInteger> getValue() {
         return value;
     }
 
-    public static BigInteger[] parseAndCheckValue(String value, XmlFile file)
+    public static ArrayBigList<BigInteger> parseAndCheckValue(String value, XmlFile file)
         throws ParseException
     {
         String tmp = ListOfHexBinaryType.applyLexicalFacets(value, file);
-        BigInteger[] ret = ListOfHexBinaryType.parseValue(tmp, file);
+        ArrayBigList<BigInteger> ret = ListOfHexBinaryType.parseValue(tmp, file);
         ListOfHexBinaryType.checkValueBasedFacets(ret);
         return ret;
     }
 
-    public static BigInteger[] parseValue(String value, XmlFile file)
+    public static ArrayBigList<BigInteger> parseValue(String value, XmlFile file)
         throws ParseException
     {
-        String[] tmpSplit = (value.split("[ ]+"));
-        BigInteger[] ret = new BigInteger[tmpSplit.length] ;
-        for (int i = 0; (i < ret.length); i ++) {
-            ret[i] = XmlHexBinary.parseAndCheckValue(tmpSplit[i], file);
+        final Pattern splitPattern = (Pattern.compile("([^ ]*)[ ]+"));
+        ArrayBigList<BigInteger> ret = new ArrayBigList<BigInteger>();
+        Matcher matcher = splitPattern.matcher(value);
+        while (matcher.find()) {
+            ret.add(XmlHexBinary.parseAndCheckValue(matcher.group(1), file));
         }
         return ret;
     }
@@ -58,7 +61,7 @@ public class ListOfHexBinaryType
         return tmp;
     }
 
-    public static void checkValueBasedFacets(BigInteger[] value) {
+    public static void checkValueBasedFacets(ArrayBigList<BigInteger> value) {
     }
 
 }

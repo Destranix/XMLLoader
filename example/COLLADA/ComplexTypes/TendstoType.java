@@ -48,7 +48,6 @@ public final class TendstoType
         ALLOWED_ATTRIBUTES.add("encoding");
         ALLOWED_ATTRIBUTES.add("definitionURL");
         ALLOWED_ATTRIBUTES.add("type");
-        ALLOWED_ATTRIBUTES.add("##other");
     }
 
     public TendstoType(XmlComplexType elem) {
