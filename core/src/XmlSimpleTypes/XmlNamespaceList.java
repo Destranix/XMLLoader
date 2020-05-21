@@ -1,8 +1,10 @@
 package XmlSimpleTypes;
 
 import java.text.ParseException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Util.ArrayBigList;
 import Xml.XmlFile;
 import Xml.XmlSimpleType;
 import Xml.XmlValidationException;
@@ -11,8 +13,7 @@ public class XmlNamespaceList extends XmlSimpleType{
 	
 	private static final Pattern RESTRICTION_PATTERN = Pattern.compile("(?:##targetNamespace|##local|##any|##other|(?:(?:[a-zA-Z][0-9a-zA-Z+\\\\-\\\\.]*:)?/{0,2}[0-9a-zA-Z;/?:@&=+$\\\\.\\\\-_!~*'()%]+)?(?:#[0-9a-zA-Z;/?:@&=+$\\\\.\\\\-_!~*'()%]+)?)(?:(?:[ ]+)(?:##targetNamespace|##local|##any|##other|(?:(?:[a-zA-Z][0-9a-zA-Z+\\\\-\\\\.]*:)?/{0,2}[0-9a-zA-Z;/?:@&=+$\\\\.\\\\-_!~*'()%]+)?(?:#[0-9a-zA-Z;/?:@&=+$\\\\.\\\\-_!~*'()%]+)?))*");
 	
-	protected final String[] value;
-
+	protected final ArrayBigList<String> value;
 
 	public XmlNamespaceList(XmlSimpleType attr, String value) throws ParseException{
 		super(attr);
@@ -20,7 +21,7 @@ public class XmlNamespaceList extends XmlSimpleType{
 	}
 	
 	@Override
-	public String[] getValue() {
+	public ArrayBigList<String> getValue() {
 		return value;
 	}
 	
@@ -32,17 +33,24 @@ public class XmlNamespaceList extends XmlSimpleType{
 		return tmp;
 	}
 	
-	public static String[] parseValue(String value){
-		return value.split("[ ]+");
+	public static ArrayBigList<String>  parseValue(String value){
+		final Pattern splitPattern = Pattern.compile("([^ ]*)[ ]+");
+		
+		ArrayBigList<String> ret =  new ArrayBigList<String>();
+		Matcher matcher = splitPattern.matcher(value);
+		while(matcher.find()){
+			ret.add(matcher.group(1));
+		}
+		return ret;
 	}
 	
-	public static void checkValueBasedFacets(String[] value){
+	public static void checkValueBasedFacets(ArrayBigList<String> value){
 		//Nothing
 	}
 	
-	public static String[] parseAndCheckValue(String value, XmlFile file) throws ParseException{
+	public static ArrayBigList<String> parseAndCheckValue(String value, XmlFile file) throws ParseException{
 		String tmp = applyLexicalFacets(value, file);
-		String[] ret = parseValue(tmp);
+		ArrayBigList<String>  ret = parseValue(tmp);
 		checkValueBasedFacets(ret);
 		return ret;
 	}
